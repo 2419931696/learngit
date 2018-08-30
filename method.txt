@@ -1,0 +1,250 @@
+1.Collection
+Arrays.asList(array);
+collection.contains("a");
+collection.contains(collection1);
+collection.isEmpty();
+collection.clear();
+collection.size();
+collection.toArray();
+collection.add("a");
+collection.addAll(collection1);
+collection.removeAll(collection1);
+collection.remove("a");
+Iterator iterator=collection.iterator();
+iterator.hasNext();
+iterator.next()
+iterator.remove();
+for(String str:array){}
+for(String str:collection){}
+<String>
+<Integer>
+new LinkedList/ArrayList
+list.add("a");
+list.add(1,"a");
+list.remove(2);
+list.remove("a");
+list.get(1);
+list.set(1,"a");
+list.subList(3,8);
+list.size();
+list.clear();
+Collections.sort(list);
+Collections.sort(list,new Comparator<String>(){
+	public int compare(String o1,String o2){
+		return o1.length()-o2.length();		
+	}
+};);
+list=Collections.synchronizedList(list);
+Arrays.toString(data);
+
+2.Exception
+try{}catch(Exception){e.printStackTrace()}finally{};
+final/finally/finalize
+throw new IllegalAgeException
+throws IllegalAgeException
+public void dosome() throws IOException,AWTExeption{}
+
+3.file
+File file=new File("demo.txt");
+file dir=new File("demo");
+file.exists();
+file.createNewFile();
+file.delete();
+file.getName();
+file.length();
+file.canRead();
+file.canWrite();
+file.isHidden();
+file.Directory();
+file.listFiles();
+file.listFiles(filter);
+file.mkdir("a");
+file.mkdirs("a/b/c/d");
+
+4.Integer
+Integer/Byte/Long/Double/Float/Short/Character/Boolean
+Integer i=Integer.valueOf(128);  =  Integer i=128;
+int i=i.intValue();  int d=i;
+Integer.MAX_VALUE;
+int a=Integer.parseInt("123");
+
+5.IO
+try(FOS fos=new FOS("fos.dat"))
+FIS-FOS
+ISR-OSW(fis,"UTF-8")
+BR-BW
+ObjectIS-ObjectOS;
+PW(bw,true)
+
+6.list
+Arrays.asList(array);
+Arrays.toString(array);
+list.toArray(new String[c.size()]);
+list.add("one");
+list.add(1,"two");
+list.remove(1);
+list.get(1);
+list.set(1,"ten");
+list.size();
+list.subList(3,8);
+list.subList(2,9).clear();
+
+7.Object
+Point point=new Point(1,2);
+point.toString();
+point==point2;
+point.equals(point2);
+
+8.queue
+
+Deque<String> deque=new LinkerList<String>();
+deque.offer("one"); ==  deque.offerLast("one");
+deque.poll(); == deque.pollFirst();
+deque.offerFirst("one");
+deque.pollLast();
+queue.offer("one");
+queue.size();
+queue.peek();
+queue.poll;
+Deque stack=new LinkedList();
+stack.push("one");
+stack.pop();
+
+
+9.raf
+raf.read();
+raf.read(data);
+raf.close()
+System.currentTimeMillis();
+raf.write(99);
+raf.writa(data,0,len);
+raf.seek(4);
+raf.getFilePointer();
+raf.writeInt();
+raf.writeDouble();
+raf.writeLong();
+raf.readInt();
+raf.readDouble();
+raf.readLong();
+byte data[]=new byte[(int)raf.length];
+raf.read(data);
+String str=new String(data,"UTF-8").trim;
+
+10.reflect
+Class cls=obj.getClass();
+Filed filed[]=cls.getDeclaredFields();
+Method method[]=cls.getDeclaredMethod();
+Constructor constructor[]=cls.getDeclaredConstructors();
+Class cls=Class.forName(className)
+
+Class cls=Class.forName("reflect.Foo");
+Object obj=cls.newInstance();
+Method method=cls.getDeclaredMethod("test");
+method.setAccessible(true);
+Objcet val=method.invoke(obj);
+
+cls.getDeclaredMethod("test",int.class,String.class)
+method.invoke(obj,i,p2);
+
+Annotation ann[]=method.getAnnotations();
+
+11.socket
+Socket socket=new Socket(localhost,8088);
+synchronized(this)
+InetAddress address=socket.getInetAddress();
+String host=address.getHostAddress();
+OutputStream out=socket.getOutputStream();
+
+12.String
+str.charAt(9);
+str.indexOf("in");
+str.indexOf("in",3);
+str.lastIndexOf("in");
+str.length();
+boolean check=mail.matches(regex);
+line.replaceAll("[0-9]+",regex);
+line.split("\\s");
+line.startsWith("think");
+line.endsWith("ava");
+builder.append(",为了找个好工作!");
+builder.replace(9,16,"就是为了改变世界");
+builder.delete(0,8);
+builder.insert(0,"活着");
+str.substring(4,9);
+str.substring(4);
+str.trim();
+str.toUpperCase();
+str.toLowerCase();
+str=i+"";
+String.valueOf(d);
+
+13.Thread
+Thread.currentThread();
+Thread.sleep(5000);
+thread.setDaemon(true);
+thread.getId();
+thread.getName();
+thread.getPriority();
+thread.isAlive();
+thread.isDaemon();
+thread.isInterrupted();
+final Thread download=new Thread();
+thread.join();
+thread.setPriority(Thread.MIN_PRIORITY);
+thread.setPriority(Thread.MAX_PRIORITY);
+thread.interrupt();
+Thread.yield();
+synchronized
+synchronized(this)
+
+ExecutorService threadPoll=Excutors.newFixedThreadPool(150);
+threadPoll.excute(runnable);
+
+14.date
+Calendar calendar=Calendar.getInstance();
+calendar.add(Calendar.YEAR,3);
+calendar.get(Calendar.YEAR);
+calendar.set(Calendar.YEAR,2008);
+calendar.getActualMaximum(Calendar.DATH);
+calendar.getTime();
+calendar.setTime(date);
+Date date=new Date();
+long time=date.getTime();
+date.setTime(time);
+
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a E");
+sdf.format(date);
+sdf.parse(line);
+
+15.Map
+Map<String,Integer> map=new HashMap<String,Integer>();
+map.put("语文",98);
+map.size();
+map.get("语文");
+map.remove("语文");
+map.containsKey("语文");
+map.containsValue(98);
+map.keySet();
+map.entrySet();
+map.values();
+
+16.lambda
+Runnable runnable=()->System.out.println("HelloWorld!");
+Comparator<String> com=(o1,o2)->o1.length()-o2.length();
+map.forEach((k,v)->System.out.println(k+":"+v))
+
+
+html
+
+
+d1.style.width="100px";
+console.log(d1.style)
+debugger;
+
+
+
+
+
+
+
+
