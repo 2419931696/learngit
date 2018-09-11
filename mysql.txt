@@ -1,0 +1,104 @@
+day01:
+1.mysql -uroot -p1234;
+2.show databases;
+3.create database db1;
+4.show create database db1;
+5.create database db2 character set gbk;
+6.drop database db2;
+
+7.use db1;
+8.create table 表名(字段1 字段1类型,字段2 字段2类型);
+9.show tables;
+10.show create table person;
+11.create table 表名(字段1 字段1类型,字段2 字段2类型) engine=innodb/myisam charset=gbk/utf8;
+12.drop table person
+13.desc person;
+14.rename table 原名 to 新名;
+
+15.alter table 表名 engine=myisam/innodb charset=gbk/utf8;
+16.alter table 表名 add 字段名 类型 (first/after xxx)
+17.alter table person drop english;
+18.alter table person change 原字段名 新名(新类型)
+19.alter table person modify 字段名 类型 first/after xxx
+20.insert into 表名 values(值1，值2...)
+21.insert into 表名 values("刘备",20),("关羽",19),("张飞",30)
+22.insert into 表名(字段1名，字段2名) values(值1值2)
+23.insert into 表名(字段1,字段2)values("悟空"),("八戒"),("沙僧")
+24.set names gbk;
+
+25.select*from hero;
+26.select name from hero;
+27.select name,age from hero;
+28.select*from hero where age<20;
+29.select*from hero where name="关羽";
+
+30.delete from 表名 where age=10;
+31.update 表名 set age=40 where name="八戒";
+32.create table 表名(字段1 字段1类型 primary key auto_increment comment "这是主键",字段2 字段2类型);
+33.show variables like"%autocommit%";
+34.set autocommit=0;
+35.commit;
+36.rollback;
+37.savepoint 标识s1;
+38.rollback to s1;
+39.truncate table 表名;
+40.create table t_int(num int(10) zerofill);
+
+int(m) bigint(m) zerofill(常填充);
+double(m,d),decimal(m,d);
+char(n) varchar(n) text;
+date(年月日) time(时分秒) 
+datetime(年月日时分秒 null 最大值9999-12-31) 
+timestamp(年月日时分秒 当前时间 最大值2038-1-19)
+
+
+
+1.连接数据库*
+2.显示所有的数据库*
+3.创造一个数据库db1*
+4.显示数据库db1的内容*
+5.创造一个数据库db2并指定字符集为gbk*
+6.删除数据库db2*
+
+7.选定数据库db1*
+8.在数据库db1中创造一个表格person*
+9.显示所有的表格*
+10.显示表格person的内容*
+11.创造表格t1并指定引擎和字符集*
+12.删除表格*
+13.查看表结构*
+14.修改表格名字*
+
+15.修改表格的引擎和字符集*
+16.增加表格字段*
+17.删除名为english的字段*
+18.修改字段名*
+19.修改字段位置和类型*
+
+20.插入表格内容（全表插入）*
+21.插入表格内容（全局插入多个）*
+22.插入表格内容（指定字段）*
+23.插入表格内容（指定多个字段）*
+(24.修改字符集)
+
+25.查询表格全部内容*
+26.查询表格所有的名字*
+27.查询表格所有的名字.年龄*
+28.查询表格中所有年龄小于20的内容*
+29.查询表格中名字等于关羽的内容*
+30.删除表格内容
+31.修改表格内容
+32.创造表格并指定主键，主键自增，对每个字段添加注释
+33.查看是否自动提交
+34.关闭自动提交
+35.手动提交
+36.事务回滚上次提交的点
+37.添加标识s1
+38.回滚到s1
+39.删除表格并创造新表格
+
+
+
+
+
+
