@@ -43,6 +43,35 @@ day01:
 38.rollback to s1;
 39.truncate table 表名;
 40.create table t_int(num int(10) zerofill);
+41.select empno,ename from emp where mgr is null;
+42.select empno,ename from emp where mgr is not null;
+43.select ename as"姓名",sal as"工资" from emp; 
+   select ename 姓名,sal 工资 from emp;
+44.select distinct job from emp;
+45.select *from emp where deptno=10 and sal>3000;
+46.select ename,job,mgr,deptno from emp where deptno=30 or mgr=7698;
+47.select*from emp where sal in(5000,1500,3000);
+48.select*from emp where sal between 2000 and 4000;
+49.select*from emp where sal not between 2100 and 2800;
+50.select*from emp where ename like '_a%b';
+51.select*from t_item where title not like "%得力%";
+52.select name,sal from emp order by sal;
+53.select*from emp limit 3,3;
+54.select ename 姓名,sal 工资,sal*5 年终奖 from emp;
+55.update emp set comm=ifnull(comm,0);
+56.select sum(sal)from emp;
+57.select avg(sal)from emp where deptno=10;
+58.select max(sal)from emp where deptno=30;
+59.select min(price)from t_item where title like "dell";
+60.select count(*) from emp where sal>=3000;
+61.select now();
+62.select curdate();
+63.select curtime();
+64.select date(now());
+65.select time(now());
+66.select extract(year/month/day/hour/minute/second from now());
+67.select date_format(now(),"%Y年%m月%d日%H时%i分%s秒");
+68. select str_to_date("14.08.2018 08:00:00","%d.%m.%Y %H:%i:%s");
 
 int(m) bigint(m) zerofill(常填充);
 double(m,d),decimal(m,d);
@@ -50,7 +79,13 @@ char(n) varchar(n) text;
 date(年月日) time(时分秒) 
 datetime(年月日时分秒 null 最大值9999-12-31) 
 timestamp(年月日时分秒 当前时间 最大值2038-1-19)
-
+5%3等效mod(5,3)
+%Y四位年 %y两位年
+%m两位月 %c一位月
+%d号
+%H 24小时 %h12小时
+%i 分
+%s 秒
 
 
 1.连接数据库*
@@ -89,16 +124,39 @@ timestamp(年月日时分秒 当前时间 最大值2038-1-19)
 30.删除表格内容
 31.修改表格内容
 32.创造表格并指定主键，主键自增，对每个字段添加注释
-33.查看是否自动提交
+(33.查看是否自动提交)
 34.关闭自动提交
 35.手动提交
 36.事务回滚上次提交的点
 37.添加标识s1
 38.回滚到s1
 39.删除表格并创造新表格
-
-
-
-
-
-
+40.创造表格时指定int值长度
+41.查询mgr为空的员工部门，名字
+42.查询mgr不为空的员工部门，姓名
+43.查询员工姓名工资时添加别名
+44.查询职位时去重
+45.and	
+46.or	
+47.in	
+48.between
+49.not between
+50.like _%
+51.not like _%
+52.order by(desc)
+53.limit
+54.*
+55.ifnull(x,y);如果x为null则赋值y，不为null则赋值x
+56.sum(sal)求和
+57.avg(sal)求平均
+58.max(sal)求最大值
+59.min(sal)求最小值
+60.count(*/sal)统计数量
+61.now();获取当前时间年月日时分秒
+62.curdate();获取当前年月日
+63.curtime();获取当前时分秒
+64.date(now());
+65.time(now());
+66.extract(year from now());
+67.date_format(日期,format);
+68.str_to_date(非标准时间,format);
