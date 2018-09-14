@@ -1,0 +1,4 @@
+select e.deptno,e.ename,e.sal from emp e join (select deptno,avg(sal) a from emp
+group by deptno) m on e.deptno=m.deptno
+where sal>a
+order by e.deptno;
