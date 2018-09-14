@@ -1,0 +1,337 @@
+select concat("aaa","bbb");
+select ename,concat(sal,"元") 工资 from emp;
+select ename,char_length(ename) from emp;
+select instr("abcdefg","d");
+select locate("d","abcdefg");
+select insert("abcdefg",3,2,"m");
+select upper("abc"),lower("NBA");
+select trim("                 a b                 ");
+select left("abcdefg",2);
+select right("abcdefg",2);
+select substring("abcdefg",2,3);
+select repeat("abcdefg",2);
+select replace("abcdefg","de","mm");
+select reverse("abcdefg");
+select floor(3.84);
+select round(23.89999,2);
+select truncate(23.88888,2);
+select round(rand()*3+3);
+select max(sal),deptno from emp group by deptno;
+select avg(sal),job from emp group by job;
+select deptno 部门,count(*) 人数 from emp group by deptno;
+select deptno,max(sal) from emp where sal>1000 group by deptno;
+select mgr,count(*) from emp where mgr is not null group by mgr;
+select deptno,mgr,count(*) from emp where mgr is not null group by deptno,mgr;
+
+select deptno,count(*) c,sum(sal) s from emp 
+group by deptno 
+order by c,s desc;
+select deptno,count(*),sum(sal) from emp
+group by deptno
+order by count(*),sum(sal) desc;
+
+select deptno,avg(sal) a,min(sal),max(sal) from emp 
+where sal between 1000 and 3000 
+group by deptno 
+order by a;
+
+select job,count(*) c,sum(sal),avg(sal) a,min(sal) from emp 
+where mgr is not null
+group by job 
+order by c desc,a;
+
+select deptno,avg(sal) from emp group by deptno having avg(sal)>2000 ;
+select*from t_item;
+
+select category_id,avg(price) a from t_item
+group by category_id
+having a<100;
+
+select category_id,avg(price) a from t_item
+where category_id in(238,917)
+group by category_id;
+
+select deptno,count(*),avg(sal) a from emp
+group by deptno
+having a>2000
+order by a desc;
+
+select deptno,sum(sal) s,avg(sal) a from emp
+where sal between 1000 and 3000
+group by deptno
+having a>=2000
+order by a;
+
+select job,count(*) c,sum(sal) s,max(sal) from emp
+where job not like "s%"
+group by job
+having avg(sal)!=3000
+order by c,s desc;
+
+select extract(year from hiredate) year,count(*) c from emp
+group by year;
+
+select avg(sal) a from emp
+group by deptno
+order by a desc
+limit 0,1;
+
+select deptno d from emp
+group by d
+order by avg(sal) desc
+limit 0,1;
+
+select*from emp where sal=(select max(sal) from emp);
+
+
+select*from emp where sal>(select avg(sal) from emp);
+
+select*from emp where sal>(select max(sal) from emp where deptno=20);
+
+
+select*from emp where job=(select job from emp where ename="jones") and ename!="jones";
+
+
+
+select*from emp where job=(select job from emp where sal=(select min(sal) from emp)) and sal!=(select min(sal) from emp);
+
+6.
+select*from emp where hiredate=(select max(hiredate) from emp);
+
+7.
+select*from dept;
+
+select deptno,dname from dept where deptno=(select deptno from emp where ename="king");
+
+8.
+select*from emp;
+
+select deptno,dname from dept where deptno in(select distinct deptno from emp);
+
+9.
+select*from dept where deptno in(select deptno from emp group by deptno having avg(sal)=(select avg(sal) a from emp group by deptno order by avg(sal) desc limit 0,1));
+
+select*from emp;
+;
+select ename from(select ename from (select*from emp)newtable where sal>2000) newtadsafdsafsadfaserfbel where ename="jones";
+show tables;
+create table emp_21 as (select*from emp);
+select*from emp_21;
+
+select e.ename,d.dname
+from emp e,dept d
+where e.deptno=d.deptno
+
+select e.*
+from emp e,dept d
+where e.deptno=d.deptno and d.loc="new york";
+
+select e.ename,d.dname
+from emp e join dept d
+on e.deptno=d.deptno;
+
+select e.ename,d.dname
+from emp e right join dept d
+on e.deptno=d.deptno;
+	
+	select*from emp;
+  1. 每个部门的人数,根据人数排序
+	 select deptno,count(*) c from emp group by deptno order by c;
+  2. 每个部门中，每个主管的手下人数
+	 select deptno,mgr,count(*) c from emp 
+	 where mgr is not null
+	 group by deptno,mgr;
+  3. 每种工作的平均工资
+	 select job,avg(sal)from emp
+	 group by job;
+  4. 每年的入职人数 
+	 select extract(year from hiredate) year,count(*) from emp 
+	 group by year;
+  5. 少于等于3个人的部门信息
+  	①
+ 	select d.*
+ 	from emp e,dept d
+ 	where e.deptno=d.deptno
+ 	group by e.deptno
+ 	having count(*)<=3;
+ 	②
+ 	select*from dept
+ 	where deptno in(select deptno from emp e 
+ 	group by deptno
+ 	having count(*)<=3);
+  6. 拿最低工资的员工信息
+	 select *from emp where sal=(select min(sal) from emp);
+  7. 只有一个下属的主管信息
+ 	
+	select*from emp where empno in(select mgr from emp 
+ 	where mgr is not null
+ 	group by mgr
+	having count(*)=1);
+	
+	select*from emp where empno in(select mgr from emp
+	where mgr is not null
+	group by mgr
+	having count(*)=1);
+  8. 平均工资最高的部门编号
+	     select deptno from emp
+	     group by deptno
+	     having avg(sal)=(select avg(sal) a from emp 
+	     group by deptno
+	     order by a desc
+	     limit 0,1);
+	     
+  9. 下属人数最多的人，查询其个人信息
+ 		select * from emp 
+ 		where empno=(select mgr from emp 
+ 		where mgr is not null
+ 		group by mgr
+ 		order by count(*) desc
+ 		limit 0,1);
+ 		
+ 		
+ 		select*from emp
+ 		where empno in(select mgr from emp
+ 		group by mgr
+ 		having count(*)=(select count(*)from emp
+ 		group by mgr
+ 		order by count(*) desc
+ 		limit 0,1));
+ 		
+ 		
+  10. 拿最低工资的人的信息
+		 select * from emp 
+		 where sal=(select min(sal)from emp);
+		 
+  11. 最后入职的员工信息
+		 select*from emp
+		 where hiredate in(select max(hiredate) from emp);
+  12. 工资多于平均工资的员工信息
+		 select*from emp
+		 where sal>(select avg(sal) from emp);
+  13. 查询员工信息，部门名称
+        select e.*,d.dname
+        from emp e join dept d
+        on e.deptno=d.deptno
+  14. 员工信息，部门名称，所在城市
+       select e.*,d.dname 部门名称,d.loc 城市
+       from emp e join dept d
+       on e.deptno=d.deptno;
+  15. DALLAS 市所有的员工信息
+		 select e.*
+		 from emp e join dept d
+		 on e.deptno=d.deptno
+		 where d.loc="dallas";
+  16. 按城市分组，计算每个城市的员工数量
+		 select loc,count(e.ename)
+		 from emp e right join dept d
+		 on e.deptno=d.deptno
+		 group by loc
+  17. 查询员工信息和他的主管姓名
+        select e1.*,e2.ename 主管名
+        from emp e1 join emp e2
+        on e1.mgr=e2.empno
+  18. 员工信息，员工主管名字，部门名
+  		①
+	 	select n.*,d.dname 部门 from 
+	 	(select e1.*,e2.ename 主管名
+        from emp e1 left join emp e2
+        on e1.mgr=e2.empno) n join dept d;
+        ②
+        select e1.*,e2.ename 主管名,d.dname
+        from emp e1 
+        join emp e2 on e1.mgr=e2.empno
+        join dept d on e1.deptno=d.deptno
+  20. 员工和他所在部门名
+		 select e.*,dname 部门名
+		 from emp e join dept d
+		 on e.deptno=d.deptno;
+  22. 案例：查询emp表中所有员工的姓名以及该员工上级领导的编号，姓名，职位，工资
+		 select e1.ename,e2.empno,e2.ename,e2.job,e2.sal
+        from emp e1 left 
+        join emp e2
+        on e1.mgr=e2.empno
+  23. 案例：查询emp表中名字中没有字母'K'的所有员工的编号，姓名，职位以及所在部门的编号，名称，地址
+		 select e.empno,e.ename,e.job,d.deptno,d.dname,d.loc
+		 from emp e left 
+		 join dept d 
+		 on e.deptno=d.deptno
+		 where e.ename not like "%k%"
+  24. 案例：查询dept表中所有的部门的所有的信息，以及与之关联的emp表中员工的编号，姓名，职位，工资
+		select d.*,e.empno,e.ename,e.job,e.sal
+		from emp e right join dept d
+		 on e.deptno=d.deptno
+
+		 select*from t_item_category
+		 select*from t_item
+		 
+		 select t1.category
+		 from t_item t1 join t_item_category t2
+		 on t1.category_id=t2.category_id
+		 group by t1.category_id
+		 
+		 
+		 
+ 1. 每个部门的人数,根据人数排序
+	 select deptno,count(*) from emp
+	 group by deptno
+	 order by count(*);
+  2. 每个部门中，每个主管的手下人数
+	 select deptno,mgr,count(*) from emp
+	 where mgr is not null
+	 group by deptno,mgr
+  3. 每种工作的平均工资
+	 select job,avg(sal)from emp
+	 group by job;
+  4. 每年的入职人数 
+	 select extract(year from hiredate) year,count(*)from emp
+	 group by year;
+	 
+  5. 少于等于3个人的部门信息
+ 
+  6. 拿最低工资的员工信息
+	 
+  7. 只有一个下属的主管信息
+ 
+
+  8. 平均工资最高的部门编号
+	     
+  9. 下属人数最多的人，查询其个人信息
+ 
+  10. 拿最低工资的人的信息
+		 
+  11. 最后入职的员工信息
+		 
+  12. 工资多于平均工资的员工信息
+		 
+  13. 查询员工信息，部门名称
+        
+  14. 员工信息，部门名称，所在城市
+       
+  15. DALLAS 市所有的员工信息
+		 
+  16. 按城市分组，计算每个城市的员工数量
+		 
+  17. 查询员工信息和他的主管姓名
+	 
+  18. 员工信息，员工主管名字，部门名
+	 
+  20. 员工和他所在部门名
+		 
+  22. 案例：查询emp表中所有员工的姓名以及该员工上级领导的编号，姓名，职位，工资
+		 
+  23. 案例：查询emp表中名字中没有字母'K'的所有员工的编号，姓名，职位以及所在部门的编号，名称，地址
+		 
+  24. 案例：查询dept表中所有的部门的所有的信息，以及与之关联的emp表中员工的编号，姓名，职位，工资
+ 
+    对于工资高于本部门平均工资的员工，列出部门号，姓名，工资，按部门编号排列
+  
+  -查找每个部门的平均工资
+  select deptno,avg(sal)from emp
+  group by deptno;
+  
+  select empno from emp
+  where deptno=10 and
+
+  select deptno,ename,job,sal from emp
+  where empno in();
+  对于工资高于本部门平均工资的员工，列出部门号，姓名，工资，按部门编号排列
