@@ -71,7 +71,56 @@ day01:
 65.select time(now());
 66.select extract(year/month/day/hour/minute/second from now());
 67.select date_format(now(),"%Y年%m月%d日%H时%i分%s秒");
-68. select str_to_date("14.08.2018 08:00:00","%d.%m.%Y %H:%i:%s");
+68.select str_to_date("14.08.2018 08:00:00","%d.%m.%Y %H:%i:%s");
+69.select concat("aaa","bbb");
+70.select char_length("abc");
+71.select instr("abcdefg","d");
+72.select locate("d","abcdefg");
+73.select insert("abcdefg",3,2,"m");
+74.select upper("abc");
+75.select lower("NBA");
+76.select trim(" a b ");
+77.select left("abcdefg",2);
+78.select right("abcdefg",2);
+79.select substring("abcdefg",2);
+80.select repeat("abcdefg",2);
+81.select replace("abcdefg","de","mm");
+82.select reverse("abcdefg");
+83.select floor(3.84);
+84.select round(23.8,2);
+85.select truncate(23.879,2);
+86.select rand();
+87.select count(*) from emp group by deptno;
+88.select category_id,avg(price) a from t_item
+group by category_id
+having a<100;
+89.create table emp_20 as(子查询);
+90.select e.ename,d.dname
+from emp e,dept d
+where e.deptno=d.deptno
+91.select e.ename,d.dname
+from emp e,dept d
+92.select e.ename,d.dname
+from emp e join dept d
+on e.deptno=d.deptno;
+93.select e.ename,d.dname
+from emp e left/right join dept d
+on e.deptno=d.deptno;
+94.create view 视图名 as (子查询)
+95.create view v_emp_20 as(select*from emp where deptno=20)with check option;
+96.create or replace view v_emp_20 as(select*from emp where deptno=20 and sal>2000);
+97.create table t1(id int,age int not null);
+98.create table t2(id int,age int unique);
+99.create table t3(id int,age int default 20);
+100.create table emp(id int primary key auto_increment,name varchar(10),deptid int,constraint fk_dept foreign key(deptid) references dept(id));
+constraint 约束名称 foreign key(外键字段名) references 表名（字段名）
+101.create index index_item_title on item2(title);
+create index 索引名 on 表名 (字段(字符长度可不写));
+102.show index from item2;
+103.drop index index_item_title on item2;
+104.create index index_item_title_price on item2(title,price)
+create index 索引名 on 表名(字段1,字段2);
+105.select deptno,group_concat(ename,"-",floor(sal)) from emp group by deptno;
 
 int(m) bigint(m) zerofill(常填充);
 double(m,d),decimal(m,d);
@@ -86,6 +135,20 @@ timestamp(年月日时分秒 当前时间 最大值2038-1-19)
 %H 24小时 %h12小时
 %i 分
 %s 秒
+DDL
+DML
+DQL
+TCL
+DCL
+顺序 where...group by...having...order by...limit...
+子查询可以放在 where having后当一个值使用，也可以放from后面当一张新表使用（此时必须有别名），写在创建表的时候
+等值连接：select*from A,B where A.x=B.x and A.age=18;
+内连接：select*from A join B on A.x=B.x;
+事务的ACID特性：
+Atomicity：原子性，最小不可拆分，全部成功或全部失败
+Consistency：一致性，从一个一致转态到另外一个一致状态
+Isolation：隔离性，多个事务之间互不影响
+Durability：持久性，事务完成后数据提交到数据库持久保存
 
 
 1.连接数据库*
@@ -145,7 +208,7 @@ timestamp(年月日时分秒 当前时间 最大值2038-1-19)
 51.not like _%
 52.order by(desc)
 53.limit
-54.*
+54.加减乘除
 55.ifnull(x,y);如果x为null则赋值y，不为null则赋值x
 56.sum(sal)求和
 57.avg(sal)求平均
@@ -160,3 +223,83 @@ timestamp(年月日时分秒 当前时间 最大值2038-1-19)
 66.extract(year from now());
 67.date_format(日期,format);
 68.str_to_date(非标准时间,format);
+69.字符串的拼接
+70.查询字符串的长度
+71.获取一个字符串在另一个字符串中出现的位置
+72.获取一个字符串在另一个字符串中出现的位置(反)
+73.在字符串中插入字符串
+74.转大写
+75.转小写
+76.去空白
+77.从左边截取
+78.从右边截取
+79.从中间截取
+80.重复
+81.代替
+82.反转字符串
+83.向下取整
+84.四舍五入
+85.非四舍五入，直接保留小数位数
+86.产生随机数
+87.分组
+88.聚合函数条件
+89.子查询创建新表
+90.等值连接
+91.笛卡尔积
+92.内连接
+93.外链接
+94.创建视图
+95.创建视图并避免数据污染
+96.修改视图（创造或代替）
+97.字段不能为空
+98.字段不能重复
+99.设定默认值
+100.外键约束（一般不适用）
+101.创建索引
+102.查看索引
+103.删除索引
+104.创建多字段索引
+105.显示到一行
+
+
+
+第一次：
+39.删除表格并创造新表格
+40.创造表格时指定int值长度
+44.查询职位时去重
+55.如果x为null则赋值y，不为null则赋值x
+62.获取当前年月日
+63.获取当前时分秒
+66.提取单独的年
+68.非标准日期转化为标准日期
+70.查询字符串的长度
+71.获取一个字符串在另一个字符串中出现的位置
+72.获取一个字符串在另一个字符串中出现的位置(反)
+73.在字符串中插入字符串
+79.从中间截取
+82.反转字符串
+83.向下取整
+84.四舍五入
+85.非四舍五入，直接保留小数位数
+86.产生随机数
+89.子查询创建新表
+90.等值连接
+94.创建视图
+95.创建视图并避免数据污染
+97.字段不能为空
+98.字段不能重复
+99.设定默认值
+98.字段不能重复
+101.创建索引
+102.查看索引
+103.删除索引
+105.显示到一行
+
+第二次：
+44.查询职位时去重
+62.获取当前年月日
+83.向下取整
+95.创建视图并避免数据污染
+98.字段不能重复
+102.查看索引
+103.删除索引
