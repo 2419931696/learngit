@@ -1,0 +1,40 @@
+show tables;
+create view v_emp_10 as(select*from emp where deptno=10)
+show tables;
+
+create view sal_data as(select deptno,sum(sal),avg(sal),max(sal),min(sal)from emp group by deptno);
+select*from sal_data;
+create view v_emp_nosal as(select empno,ename,deptno,hiredate,comm,job from emp);
+select*from v_emp_nosal;
+select*from v_emp_10
+select*from emp;
+insert into v_emp_10(empno,ename,deptno) values(10011,"marry",10);
+create view v_emp_20 as(select*from emp where deptno=20)with check option;
+insert into v_emp_20(empno,ename,deptno)value(10086,"a",20)
+delete from v_emp_10 where empno=10012;
+select*from v_emp_20;
+update v_emp_20 set sal=1000 where sal=100000;
+create or replace view v_emp_20 as(select*from emp where deptno=20 and sal>2000);
+select*from v_emp_20;
+create or replace view v_emp_30 as(select*from emp where deptno=30);
+drop view v_emp_10
+create table t1(id int,age int not null);
+insert into t1 value(1,null);
+insert into t1 value(2,22);
+create table t2(id int,age int unique);
+insert into t2 value(1,21);
+insert into t2 value(2,21);
+create table t3(id int,age int default 20);
+insert into t3 value(1,null);
+insert into t3(id)value(2);
+select * from t3;
+insert into t3 value(3,30);
+
+
+
+create database db6;
+
+
+
+
+
