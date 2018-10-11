@@ -1,0 +1,75 @@
+
+1.
+交易流水表
+交易号，交易时间，交易金额，
+姓名，性别，关系，支付方式
+show tables;
+create table Trade(TradeID int primary key auto_increment,TradeTime date,
+TradeAmount int,Method varchar(5),pid int);
+create table person(id int primary key auto_increment,name varchar(10),gender varchar(10),
+relation varchar(10));
+show tables;
+2.插入人物数据：任务表，刘德华 男 亲戚，杨幂 女 亲戚，马云 男同事，特朗普 男 朋友，貂蝉 女 朋友
+流水表：	刘德华 微信 收1000 2018-3-20
+				杨幂    现金 收500  发50 2018-4-14
+				马云    支付宝 收20000 发5 2018-3-11
+				特朗普 微信 收2000 2018-5-18
+				貂蝉 微信 发20000 2018-7-22
+insert into person value(null,"马云","男","同事"),(null,"特朗普","男","朋友"),(null,"貂蝉","女","朋友");
+insert into Trade value(null,"2018-3-20",1000,"微信",1),(null,"2018-4-14",500,"现金",2),
+(null,"2018-4-14",-50,"现金",2),(null,"2018-3-11",20000,"支付宝",3),(null,"2018-3-11",-5,"支付宝",3)
+,(null,"2018-5-18",2000,"微信",4),(null,"2018-7-22",-20000,"微信",5);
+1.
+select sum(TradeAmount)
+from person p
+join Trade t on p.id=t.pid
+where t.TradeTime>str_to_date("2018年2月15号","%Y年%c月%d号");
+2.
+select p.name,TradeAmount
+from person p
+join Trade t on p.id=t.pid
+where p.gender="女" and t.TradeTime>str_to_date("2018年2月15号","%Y年%c月%d号")
+and relation="亲戚" and t.TradeAmount not between -100 and 100;
+3.
+select sum(TradeAmount),t.Method
+from person p
+join Trade t on p.id=t.pid
+where t.TradeAmount>0
+group by Method;
+
+
+
+
+
+
+
+
+
+
+
+create table relation(id int primary key auto_increment,relation varchar(10));
+create table gender(id int primary key auto_increment,gender varchar(10));
+create table method(id int primary key auto_increment,method varchar(10));
+insert into relation(relation)value("relative"),("friend"),("workmate");
+insert into gender(gender)value("female"),("male");
+select*from gender;
+insert into method(method)value("现金"),("支付宝"),("微信");
+
+select sum(TradeAmount) from Trade where date(TradeTime)>date("2018-02-15");
+
+select p.name,t.TradeAmount
+from Trade t
+join person p
+on t.TradeID=p.TradeID
+join gender g
+on p.genderID=g.id
+join relation r
+on p.relationID=r.id
+where date(t.TradeTime)>date("2018-02-15") and g.gender="female" 
+and r.relation="relative" and TradeAmount>200;
+
+select m.method,sum(TradeAmount)
+from Trade t
+join method m
+on t.TradeMethodID=m.id
+group by m.method;
