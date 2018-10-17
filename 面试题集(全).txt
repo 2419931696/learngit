@@ -1,0 +1,84 @@
+1.
+①封装：把内部实现私有化把访问的数据公开化
+②继承：子类继承父类，提高代码复用性
+③多态：向上造型（对象的多态）与重写、重载（方法的多态）
+
+2.
+public:都能访问
+protected:子类、同包类能访问
+不写：同包类能访问
+private：都不能访问
+
+3.不是
+
+4.不对，因为小数默认为double
+
+5.不对，因为小数默认为double需要强转
+
+6.①加法之后是int型不能再赋值给short型需要进行强制转换s1=(short)s1+1;
+②正常编译s1+=1内部有自动转换
+
+7.有，保留字，但没用
+
+8.Integer是int的包装类
+①Integer是引用类型，int是基本类型
+②Integer有许多方法和属性，int没有
+
+9.
+①&是位运算符，&&不是
+②在做逻辑运算时&&有短路功能，&没有短路功能
+
+10.①&|^是位运算，&&||是条件运算
+②在做逻辑运算时&&||有短路功能，&|没有短路功能
+
+11.他们都是内存的一部分
+stack栈 heap堆
+①stack存放临时变量和参数 heap存放成员变量
+②方法结束后，stack的数据清空，heap不清空
+③stack是一种数据结构，增删元素遵循先进后出原则，heap增删元素不遵循
+
+12.Math.round(11.5)=12 Math.round(-11.5)=11
+
+13.2<<3
+
+15.数组没有length()方法但有length属性，String有length（）方法
+
+16.ok:标识 break ok
+
+17.不能
+
+18.不对，equals为ture hashcode一定相同
+
+19.String被final修饰，不能被继承
+
+20.都是true（equalsIgnoreCase为忽略大小写）
+
+21.值传递，java只有值传递参数
+
+22.String str=new String("你好啊".getbyte("utf-8"),"gbk");
+
+23.不同的2个类，都有储存字符串的功能
+①String类被final修饰，因此对象不可改变，如果改变则引用变量会指向新的对象，而改变StringBuffer对象不会创建新的对象。因此，如果需要频繁修改一个字符串则用StringBuffer来储存会更节省内存
+②StringBuffer本质上是一个char数组，String不是
+
+24.是3个不同的类，都有储存字符串的功能
+①StringBuffer和StringBuilder本质上都是一个char数组，但StringBuffer是线程安全的，StringBuilder不是线程安全的
+②String被final修饰，因此创建String对象后对象不可改变，如果改变则会创建新的对象。但StringBuilder和Stringbuffer是可以改变的。因此当需要频繁改变字符串时使用StringBuffer和StringBuilder
+
+25.他们是多态性的不同表现形式，方法名都相同
+①重载访问修饰词可以不同，重写的访问修饰词权限必须大于被重写的方法
+②重载返回值类型可以不同，重写的返回值类型必须小于或等于被重写的方法
+③重载的参数列表一定不同，重写的参数列表一定相同
+④重载方法抛出的异常可以不同，重写抛出的异常一定小于或等于被重写的方法
+
+26.
+①1,2.0
+②1,2.0
+3.0, java program
+
+27.不知道
+
+28.可以，因为char是使用unicode编码
+
+29.他们不能实例化
+①抽象类可以有抽象方法，普通方法，成员变量，常量。
