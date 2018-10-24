@@ -1,4 +1,4 @@
-/*
+jquery-3.3.1.min.js/*
  * jQuery Hotkeys Plugin
  * Copyright 2010, John Resig
  * Dual licensed under the MIT or GPL Version 2 licenses.
