@@ -1,4 +1,4 @@
-48.49
+48.49.53.54.56.60.62*.75
 
 1.
 ①封装：把内部实现私有化把访问的数据公开化
@@ -143,3 +143,116 @@ GC尽快回收
 49.1a2b2b
 
 50.三行
+
+51.
+
+52.CE
+
+53.
+①Integer.parseInt() Integer.valueOf();
+②String.valueOf(); +"" toString
+③
+Double d=3.54551;
+DecimalFormat df=new DecimalFormat("#.00");
+System.out.println(df.format(d));
+
+54
+
+61.不会
+
+62.当JAVA程序违反了java语义规则时，java虚拟机会把即将发生的错误表示为一个异常。违反规则
+包括2种，第一种是java类库内置的语义检查,例如访问null的对象，第二种是自定义的异常，可以
+使用throw抛出引发异常终止程序，所有异常都是Throwable的子类
+
+63.
+1.error几乎不可恢复，Exception可以被恢复
+2.error无法被捕捉和处理，Exception可以被捕捉并处理，是一种设计或实现问题
+
+64.？？？？？？在return之后，返回之前
+
+65.throws 写方法参数后表示这个方法可能抛出的异常
+ throw写方法体中，明确的抛出一个异常
+try{可能出现异常的程序}catch(捕获异常的类型){捕获异常后要做的处理}异常处理机制 fianlly块写
+catch后，表示执行完try catch后一定执行的程序无论是否有异常抛出try中可以抛出异常
+
+
+66.同：都是可以捕捉并恢复的异常，直接或间接继承Exception
+异：运行时异常不必须try catch ，一般异常必须try catch
+
+67.NullPointException,ClassCaseException,下标越界
+
+
+68.
+final：修饰词 修饰类时，类不可以被继承，修饰方法时，方法不能被重写，修饰变量时，变量不能被修改
+finally:异常中的finally块，是一段代码块，表示无论有没有异常最后都会被执行的代码
+finalize:gc在清理无用对象前调用的方法，他在Object中定义的，因此所有对象都有finalize方法
+
+69.A
+
+70.
+Collection
+	List
+		ArrayList
+		LinkedList
+		victor
+	Set
+		HashSet
+Map
+	HashMap
+	HashTable
+	(ModelMap)
+
+71.Map没有继承Collection
+
+72.ArrayList LinkedList HashMap
+add();
+remove();
+set();
+get();
+foreach();
+size();
+
+put();
+remove();
+put();
+foreach();
+get();
+
+73.
+ArrayList 和 Vector 内部都是数组，Vector是线程安全的
+LinkedList内部是链表
+所以 增删速度：LinedList>ArrayList>Vector
+查询速度 ArrayList>Vector>LinkedList
+
+74.Collections是针对Collection的帮助类，内部只有一些辅助Collection的静态方法，如Collection.sort()。而
+Collection是个接口，底下有许多子接口和实现类
+
+75.1.Hashtable是线程安全的，HashMap不是线程安全的
+2.HashMap没有contains方法,Hashtable有
+3.HashMap允许null作为key，Hashtable不允许
+
+76.
+1.Vector线程安全 ArrayList不是线程安全
+2.数据增长时，Vector增长一倍，ArrayList增长%50
+
+77.
+1.List：可重复，特定次序
+2.Map：以键值对方式储存，Key不能重复，value可重复
+3.Set：不可重复，有序
+
+78.
+equals，因为Set放的都是引用类型
+1.==是运算符，equals是方法
+2.==对比的是引用地址是否相同（栈中对比），equals是对比内容是否相同（堆中对比）
+equals是调用对象的equals方法，返回值是true false由equals来决定，
+
+
+
+
+
+
+
+
+
+
+
