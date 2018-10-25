@@ -1,3 +1,5 @@
+48.49
+
 1.
 ①封装：把内部实现私有化把访问的数据公开化
 ②继承：子类继承父类，提高代码复用性
@@ -126,3 +128,18 @@ GC尽快回收
 包：①java.lang ②java.util ③java.awt ④java.sql ⑤java.text ⑥java.math
 类：①StringBuilder ②StringBuffer ③String ④ArrayList ⑤LinkedList
 接口：①map ②list ③set ④Queue ⑤Deque
+
+44.可以继承，可以实现，并且是有且只有继承（或实现）一个类
+
+45.内部类只能访问创建他的类的成员，没有限制。但内部类被static修饰时，不能访问
+
+46.重写：父类与子类的多态性的表现、重载：一个类中的多态性的表现、向上造型：一个引用可以指
+向不同的对象
+
+47.不能被继承
+
+48.不知
+
+49.1a2b2b
+
+50.三行
